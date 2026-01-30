@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery | Premier Palate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="global.css">
+    <script defer src="global.js"></script>
+
+    <style>
+        body {
+            background: #0b0b0b;
+        }
+
+        .gallery-page {
+            padding: 120px 4% 80px;
+        }
+
+        .gallery-title {
+            text-align: center;
+            font-size: 42px;
+            color: #d4af37;
+            margin-bottom: 50px;
+        }
+
+        .gallery-grid {
+            column-count: 4;
+            column-gap: 18px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            margin-bottom: 18px;
+            border-radius: 14px;
+            break-inside: avoid;
+        }
+
+        @media(max-width: 1024px) {
+            .gallery-grid {
+                column-count: 3;
+            }
+        }
+
+        @media(max-width: 768px) {
+            .gallery-grid {
+                column-count: 2;
+            }
+        }
+
+        @media(max-width: 480px) {
+            .gallery-grid {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="navbar-placeholder"></div>
+
+    <section class="gallery-page">
+        <h1 class="gallery-title">Our Gallery</h1>
+        <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        fetch('gallery-images.json')
+            .then(res => res.json())
+            .then(images => {
+                const grid = document.getElementById('galleryGrid');
+                images.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    grid.appendChild(img);
+                });
+            });
+    </script>
+
+</body>
+
+</html>
