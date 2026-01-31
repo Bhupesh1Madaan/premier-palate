@@ -272,6 +272,14 @@ const menuData = {
 /* ===============================
    POPUP FORM (HOME PAGE ONLY)
 ================================ */
+
+function openPopup() {
+    const popup = document.getElementById("popupForm");
+    if (popup) {
+        popup.classList.add("active");
+    }
+}
+
 function closePopup() {
     const popupForm = document.getElementById('popupForm');
     if (popupForm) popupForm.classList.remove('active');
@@ -405,3 +413,61 @@ fetch('components/footer.html')
         const footerHolder = document.getElementById('footer-placeholder');
         if (footerHolder) footerHolder.innerHTML = data;
     });
+
+// Load Navbar
+// Load Navbar
+fetch('components/navbar.html')
+    .then(res => res.text())
+    .then(data => {
+        const nav = document.getElementById('navbar-placeholder');
+        if (nav) {
+            nav.innerHTML = data;
+
+            // Hamburger toggle
+            const hamburger = document.getElementById("hamburger");
+            const navLinks = document.querySelector(".nav-links");
+
+            if (hamburger && navLinks) {
+                hamburger.addEventListener("click", () => {
+                    navLinks.classList.toggle("active");
+                });
+            }
+
+            // SERVICES dropdown toggle (MOBILE)
+            const dropdownToggle = document.querySelector(".dropdown-toggle");
+            const dropdown = document.querySelector(".dropdown");
+
+            if (dropdownToggle && dropdown) {
+                dropdownToggle.addEventListener("click", () => {
+                    dropdown.classList.toggle("open");
+                });
+            }
+        }
+    });
+// PARALLAX HERO EFFECT
+window.addEventListener("scroll", () => {
+    document.querySelectorAll(".parallax-hero").forEach(hero => {
+        const speed = 0.4;
+        const offset = window.pageYOffset;
+        hero.style.backgroundPositionY = `${offset * speed}px`;
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const slider = document.querySelector(".testimonial-slider");
+    const testimonials = document.querySelectorAll(".testimonial-item");
+
+    if (!slider || testimonials.length === 0) return;
+
+    let index = 0;
+
+    function slideTestimonials() {
+        index++;
+        if (index >= testimonials.length) {
+            index = 0;
+        }
+        slider.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    setInterval(slideTestimonials, 5000);
+});
