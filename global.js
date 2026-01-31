@@ -438,8 +438,9 @@ fetch('components/navbar.html')
             const dropdown = document.querySelector(".dropdown");
 
             if (dropdownToggle && dropdown) {
-                dropdownToggle.addEventListener("click", () => {
-                    dropdown.classList.toggle("open");
+                dropdownToggle.addEventListener("click", (e) => {
+                    e.preventDefault(); // page jump avoid
+                    dropdown.classList.toggle("active");
                 });
             }
         }
