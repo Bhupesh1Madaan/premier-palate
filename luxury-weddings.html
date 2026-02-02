@@ -1,82 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Weddings | Premier Palate Catering</title>
+    <title>Wedding Catering | Premier Palate</title>
+
     <link rel="stylesheet" href="global.css">
-    <script src="global.js"></script>
+    <script src="global.js" defer></script>
 </head>
-    <body class="wedding-page">
-    
-        <div id="navbar-placeholder"></div>
-    
-        <!-- HERO SECTION -->
-        <section class="wedding-hero">
-            <div class="wedding-hero__overlay">
-                <h1 class="wedding-hero__title">LUXURY WEDDINGS</h1>
-                <p class="wedding-hero__subtitle">
-                    World-class wedding catering experiences in Delhi NCR
+
+<body class="wedding-catering">
+
+    <div id="navbar-placeholder"></div>
+
+    <!-- HERO -->
+    <section class="service-hero parallax">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Wedding Catering</h1>
+            <p>Crafting unforgettable culinary experiences for timeless celebrations</p>
+            <button class="btn-primary" onclick="document.getElementById('popupForm').classList.add('active')">
+                Enquire Now
+            </button>
+        </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="service-intro">
+        <div class="service-container split">
+            <div class="about-text">
+                <h2><span>Wedding Catering in </span>Delhi NCR</h2>
+                <p>
+                    With over <strong>11+ years of excellence</strong> in F&B catering, Premier Palate
+                    is recognized among the most trusted wedding caterers in Delhi NCR.
                 </p>
-                <a href="javascript:void(0)" class="wedding-hero__btn" onclick="openPopup()">
-                    Enquire Now
-                </a>
+                <p>
+                    We don’t just design menus—we craft immersive culinary experiences that stay with
+                    your guests long after the celebrations end. Every detail is executed with
+                    precision, elegance, and world-class service.
+                </p>
             </div>
-        </section>
-    
-        <!-- CONTENT SECTION -->
-        <section class="wedding-content">
-            <div class="wedding-content__container">
-    
-                <p class="wedding-content__intro">
-                    Premier Palate Catering is the perfect choice for weddings in Delhi NCR.
-                    With over <strong>11+ years of excellence</strong> in F&B catering, we are
-                    proudly recognized among the top wedding caterers in Gurgaon and Delhi.
-                </p>
-    
-                <p class="wedding-content__text">
-                    We don’t just design menus—we craft immersive culinary experiences that stay
-                    with your guests long after the celebrations end. From grand Indian weddings
-                    to high-end destination celebrations, every detail is executed with elegance,
-                    precision, and world-class service.
-                </p>
-    
-                <h2 class="wedding-content__heading">
-                    Flawless Wedding Catering Services
-                </h2>
-    
-                <p class="wedding-content__text">
-                    Beyond exceptional cuisine, our experienced team partners with you at every
-                    step to ensure your wedding unfolds flawlessly. We coordinate seamlessly with
-                    vendors, manage the complete catering setup, and ensure every dish is served
-                    at the perfect temperature with impeccable presentation.
-                </p>
-    
-                <h2 class="wedding-content__heading">Our Promise</h2>
-    
-                <ul class="wedding-content__list">
-                    <li>11+ years of unparalleled culinary expertise</li>
-                    <li>Meticulous attention to detail at every stage</li>
-                    <li>Bespoke Indian & international wedding menus</li>
-                    <li>Highly trained professional service staff</li>
-                </ul>
-    
-                <p class="wedding-content__highlight">
-                    ✨ With Premier Palate Catering, your wedding becomes an extraordinary culinary
-                    journey—crafted to be remembered forever.
-                </p>
-    
-                <div class="wedding-content__cta-box">
-                    <p class="wedding-content__cta-text">
-                        Make your special day unforgettable
-                    </p>
-                    <a href="javascript:void(0)" class="wedding-content__cta-btn" onclick="openPopup()">
-                        Contact Us
-                    </a>
-                </div>
-    
-            </div>
-        </section>
+
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=80" alt="Wedding Catering">
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="service-features">
+        <h2>Flawless Wedding Catering Services</h2>
+
+        <ul class="feature-list">
+            <li>
+                <strong>End-to-End Coordination</strong><br>
+                Seamless collaboration with planners and vendors
+            </li>
+            <li>
+                <strong>Impeccable Presentation</strong><br>
+                Perfectly timed service and elegant plating
+            </li>
+            <li>
+                <strong>Temperature-Perfect Service</strong><br>
+                Every dish served just the way it should be
+            </li>
+            <li>
+                <strong>Stress-Free Execution</strong><br>
+                We manage the details so you enjoy the moment
+            </li>
+        </ul>
+    </section>
+
+    <!-- PROMISE -->
+    <section class="service-promise">
+        <div class="promise-box">
+            <h2>Our Promise</h2>
+            <ul>
+                <li>11+ years of unmatched culinary expertise</li>
+                <li>Meticulous planning and flawless execution</li>
+                <li>Bespoke menus for Indian & international weddings</li>
+                <li>Highly trained staff delivering refined dining experiences</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="service-cta">
+        <h2>Your wedding deserves a celebration to remember</h2>
+        <p>
+            Let us turn your special day into an extraordinary culinary journey
+        </p>
+        <button class="btn-secondary" onclick="window.location.href='contact.html'">
+            Get In Touch
+        </button>
+    </section>
+
+    <div id="footer-placeholder"></div>
 
 </body>
+
 </html>
