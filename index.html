@@ -16,7 +16,7 @@
 
 
     <!-- Hero Section -->
-    <section class="hero parallex-hero">
+    <section class="hero parallax">
         <div class="hero-background"></div>
         <div class="hero-content">
             <p class="hero-subtitle">PREMIER PALATE CATERING</p>
@@ -37,7 +37,7 @@
         <div class="about-container">
             <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80"
                 alt="About Premier Palate" class="about-image">
-            <div class="about-content">
+            <div class="about-content-index">
                 <h2>Turning Caterings Into <span>Culinary Celebrations</span></h2>
                 <p>At Premier Palate Catering, we turn every event into a culinary celebration. From custom menus
                     crafted with the freshest, locally sourced ingredients to flawless, attentive service, we create
@@ -65,7 +65,7 @@
         <div class="services-grid">
     
             <!-- Private Catering -->
-            <div class="service-card">
+            <div class="service-card" onclick="window.location.href='private-events.html'">
                 <div class="service-icon">
                     <!-- CELEBRATION ICON -->
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" fill="none">
@@ -81,9 +81,35 @@
                     elevated with premium dining experiences
                 </p>
             </div>
+
+            <!-- Luxury Catering -->
+                        <div class="service-card" onclick="window.location.href='luxury-events.html'">
+                            <div class="service-icon">
+                                <!-- BRIEFCASE ICON -->
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40" fill="none" stroke="#3D1B6F"
+                                    stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+                                
+                                    <!-- Top facets -->
+                                    <polygon points="12,22 24,10 40,10 52,22" />
+                                
+                                    <!-- Main diamond -->
+                                    <polygon points="12,22 32,54 52,22" />
+                                
+                                    <!-- Facet lines -->
+                                    <line x1="24" y1="10" x2="32" y2="54" />
+                                    <line x1="40" y1="10" x2="32" y2="54" />
+                                    <line x1="12" y1="22" x2="52" y2="22" />
+                                </svg>
+                            </div>
+                            <h3>Luxury Catering</h3>
+                            <p>
+                                Corporate lunches, conferences, client meetings, and office celebrations
+                                with premium catering solutions
+                            </p>
+                        </div>
     
             <!-- Weddings -->
-            <div class="service-card">
+            <div class="service-card" onclick="window.location.href='luxury-weddings.html'">
                 <div class="service-icon">
                     <!-- WEDDING RING ICON -->
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" fill="none">
@@ -91,9 +117,8 @@
                             d="M8 9C5.5 9 4 10.5 4 12C4 13.5 5.5 15 8 15C10.5 15 13.5 9 16 9C18.5 9 20 10.5 20 12C20 13.5 18.5 15 16 15C13.5 15 10.5 9 8 9Z"
                             stroke="#3D1B6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
-
                 </div>
-                <h3>Wedding Cateringh3>
+                <h3>Wedding Catering</h3>
                 <p>
                     Over 11+ years of excellence creating immersive culinary experiences for
                     Indian and destination weddings
@@ -101,7 +126,7 @@
             </div>
     
             <!-- Corporate -->
-            <div class="service-card">
+            <div class="service-card" onclick="window.location.href='business-events.html'">
                 <div class="service-icon">
                     <!-- BRIEFCASE ICON -->
                     <svg viewBox="0 0 24 24" width="40" height="40" fill="none">
@@ -118,7 +143,7 @@
             </div>
     
             <!-- Sports / Large Events -->
-            <div class="service-card">
+            <div class="service-card" onclick="window.location.href='family-days.html'">
                 <div class="service-icon">
                     <!-- TROPHY ICON -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#3D1B6F"
@@ -147,7 +172,7 @@
     <!-- Why Choose Us -->
     <section class="why-choose">
         <div class="section-header" style="color: var(--dark-text);">
-            <p class="section-subtitle" style="color: var(--primary-purple);">Why Choose Us</p>
+            <p class="section-subtitle" style="color: var(--primary-purple);">Why Choose Us ?</p>
             <h2 class="section-title" style="color: var(--dark-text);">What Makes Us <span>Special</span></h2>
             <p class="section-description" style="color: #666;">Premier Palate Catering is committed to excellence and
                 personalized service</p>
@@ -197,33 +222,57 @@
         <div class="testimonial-container">
             <div class="section-header" style="color: var(--dark-text);">
                 <p class="section-subtitle" style="color: var(--primary-purple);">Client Testimonials</p>
-                <h2 class="section-title" style="color: var(--dark-text);">Trusted by <span>Industry Leaders</span></h2>
+                <h2 class="section-title" style="color: var(--dark-text);">What our <span>Clients say</span></h2>
             </div>
-            <div class="testimonial-slider">
-                <div class="testimonial-item">
-                    <p class="testimonial-quote">"I recently used Premier Palate Catering services for a house party.
-                        Everything was handled professionally and smoothly. The food was absolutely delicious. The staff
-                        was friendly, attentive, and maintained a high level of cleanliness throughout the event. I
-                        would highly recommend their services for any gathering or celebration!"</p>
-                    <p class="testimonial-author">Mrs. Madhu Aggarwal</p>
-                    <p class="testimonial-role">Wife of Veteran Air Chief Marshal</p>
+            <div class="testimonial-slider-wrapper">
+                <button class="slider-arrow left">&#10094;</button>
+                <div class="testimonial-slider">
+                    <div class="testimonial-item">
+                        <p class="testimonial-quote">"I recently used Premier Palate Catering services for a house party.
+                            Everything was handled professionally and smoothly. The food was absolutely delicious. The staff
+                            was friendly, attentive, and maintained a high level of cleanliness throughout the event. I
+                            would highly recommend their services for any gathering or celebration!"</p>
+                        <p class="testimonial-author">Mrs. Madhu Aggarwal</p>
+                        <p class="testimonial-role">Wife of Veteran Air Chief Marshal</p>
+                    </div>
+                    <div class="testimonial-item">
+                        <p class="testimonial-quote">"Premier Palate's service was prompt, professional, and warm — it truly
+                            elevated the entire experience. Every bite was bursting with flavour, clearly made with fresh,
+                            high-quality ingredients. I'd happily recommend this team to anyone looking for top-notch
+                            catering."</p>
+                        <p class="testimonial-author">Mr. Manoj Yadav</p>
+                        <p class="testimonial-role">Admin & HR Manager, Adani Realty</p>
+                    </div>
+                    <div class="testimonial-item">
+                        <p class="testimonial-quote">"We hired Premier Palate Catering for our head office opening, and it
+                            was an absolute delight! The food was not only delicious but beautifully presented, impressing
+                            all our guests and colleagues. Thanks to their excellent service, our office inauguration was a
+                            memorable and stress-free event."</p>
+                        <p class="testimonial-author">Mr. Gautam Chopra</p>
+                        <p class="testimonial-role">MD – Global Tea Café</p>
+                    </div>
+                    <div class="testimonial-item">
+                        <p class="testimonial-quote">"We booked Premier Palate for a family function, and honestly, they were fantastic from start to
+                        finish. Super easy to deal with, very responsive, and the team just got what we wanted right
+                        away. The food? Absolutely delicious. Everyone loved it—especially the starters and desserts.
+                        The chilli paneer and gulab jamuns were total crowd favorites!!
+                        They handled everything smoothly, showed up on time, and their staff was really polite and
+                        helpful throughout the event. Totally recommend them if you want catering that’s reliable,
+                        tasty, and chill to work with"</p>
+                        <p class="testimonial-author">Mr. Prateek Khandelwal</p>
+                        <p class="testimonial-role">Owner - DADU PRECISION FASTENERS (P) LIMITED</p>
+                    </div>
+                    <div class="testimonial-item">
+                        <p class="testimonial-quote">"Can safely say that PREMIER PALATE truly knows how to get things done, it’s a top notch
+                        catering service managed beautifully and personally by the owner Mr.Ankur Bhasin himself.
+                        Anyone looking for a function big or small this catering service is the one to pick for a great
+                        overall experience"</p>
+                        <p class="testimonial-author">Mr. Karan Anand</p>
+                        <p class="testimonial-role">CEO, Anand Pre School</p>
+                    </div>
                 </div>
-                <div class="testimonial-item">
-                    <p class="testimonial-quote">"Premier Palate's service was prompt, professional, and warm — it truly
-                        elevated the entire experience. Every bite was bursting with flavour, clearly made with fresh,
-                        high-quality ingredients. I'd happily recommend this team to anyone looking for top-notch
-                        catering."</p>
-                    <p class="testimonial-author">Mr. Manoj Yadav</p>
-                    <p class="testimonial-role">Admin & HR Manager, Adani Realty</p>
-                </div>
-                <div class="testimonial-item">
-                    <p class="testimonial-quote">"We hired Premier Palate Catering for our head office opening, and it
-                        was an absolute delight! The food was not only delicious but beautifully presented, impressing
-                        all our guests and colleagues. Thanks to their excellent service, our office inauguration was a
-                        memorable and stress-free event."</p>
-                    <p class="testimonial-author">Mr. Gautam Chopra</p>
-                    <p class="testimonial-role">MD – Global Tea Café</p>
-                </div>
+                <button class="slider-arrow left">&#10094;</button>
+
             </div>
         </div>
     </section>
@@ -253,7 +302,7 @@
                 <img src="assets/policy-bazaar.png" alt="Policy Bazaar">
             </div>
             <div class="client-card">
-                <img src="assets/clients/jaipuria.png" alt="Jaipuria Group">
+                <img src="assets/jaipuria.png" alt="Jaipuria Group">
             </div>
             <div class="client-card">
                 <img src="assets/global-tea-cafe.png" alt="Global Tea Cafe">
@@ -268,7 +317,7 @@
     <section class="csr-section">
         <div class="csr-overlay">
             <div class="csr-content">
-                <p class="section-subtitle">Social Responsibility</p>
+                <p class="section-subtitle">Our Commitment to Responsibility</p>
                 <h2>Because Responsibility Matters</h2>
                 <p>
                     At Premier Palate Catering, we believe great food should also create a positive impact.
@@ -387,7 +436,7 @@
                         <label for="eventType">Event Type *</label>
                         <select id="eventType" name="eventType" required>
                             <option value="">Select Event Type</option>
-                            <option value="Private Luxury Event">Private Luxury Event</option>
+                            <option value="Private Event">Private Event</option>
                             <option value="Wedding">Wedding</option>
                             <option value="Corporate Event">Corporate Event</option>
                             <option value="Business Meeting">Business Meeting</option>
