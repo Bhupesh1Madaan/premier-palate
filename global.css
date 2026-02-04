@@ -629,7 +629,7 @@ nav.scrolled {
 .testimonial-track {
     display: flex;
     gap: 30px;
-    width: 5000px;
+    width: 8000px;
     animation: scroll 40s linear infinite;
 }
 
