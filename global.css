@@ -1173,7 +1173,8 @@ footer {
 }
 
 .form-group label {
-    margin-bottom: 6px;
+    margin-top: 6px;
+    margin-bottom: 2px;
     font-size: 0.9rem;
     letter-spacing: 0.4px;
     color: var(--accent-gold);
