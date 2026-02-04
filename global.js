@@ -24,35 +24,48 @@ const menuData = {
 
 function openPopup() {
     const popup = document.getElementById("popupForm");
-    if (popup) {
-        popup.classList.add("active");
-    }
+    if (popup) popup.classList.add("active");
 }
 
 function closePopup() {
-    const popupForm = document.getElementById('popupForm');
-    if (popupForm) popupForm.classList.remove('active');
+    const popup = document.getElementById("popupForm");
+    if (popup) popup.classList.remove("active");
 }
 
-// Auto popup on load
+/* ============================
+   AUTO POPUP — MAX 2 TIMES
+============================ */
+
 window.addEventListener('load', () => {
-    const popupForm = document.getElementById('popupForm');
-    if (popupForm) {
+    const popup = document.getElementById("popupForm");
+    if (!popup) return;
+
+    let popupCount = localStorage.getItem("popupCount");
+    popupCount = popupCount ? parseInt(popupCount) : 0;
+
+    if (popupCount < 2) {
         setTimeout(() => {
-            popupForm.classList.add('active');
-        }, 5000);
+            popup.classList.add("active");
+            localStorage.setItem("popupCount", popupCount + 1);
+        }, 10000); // 10 sec
     }
 });
 
-// Close popup on outside click
-const popupForm = document.getElementById('popupForm');
-if (popupForm) {
-    popupForm.addEventListener('click', (e) => {
-        if (e.target.id === 'popupForm') {
-            closePopup();
+// Close on outside click (delegation safe)
+document.addEventListener('click', (e) => {
+    if (e.target && e.target.id === 'popupForm') {
+        closePopup();
+    }
+});
+
+fetch('components/popup.html')
+    .then(res => res.text())
+    .then(data => {
+        const placeholder = document.getElementById('popup-placeholder');
+        if (placeholder) {
+            placeholder.innerHTML = data;
         }
     });
-}
 
 
 /* ===============================

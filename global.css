@@ -382,7 +382,7 @@ nav.scrolled {
    HOME PAGE - ABOUT SECTION - DESKTOP
    ========================================== */
 .about-section {
-    padding: 8rem 5%;
+    padding: 4rem 5%;
     background: var(--light-cream);
 }
 
@@ -425,7 +425,7 @@ nav.scrolled {
    SERVICES SECTION - DESKTOP
    ========================================== */
 .services {
-    padding: 8rem 5%;
+    padding: 4rem 5%;
     background: var(--primary-purple);
     position: relative;
     overflow: hidden;
@@ -535,7 +535,7 @@ nav.scrolled {
    WHY CHOOSE US SECTION - DESKTOP
    ========================================== */
 .why-choose {
-    padding: 8rem 5%;
+    padding: 4rem 5%;
     background: var(--light-cream);
 }
 
@@ -772,7 +772,7 @@ nav.scrolled {
    CTA SECTION - DESKTOP
    ========================================== */
 .cta-section {
-    padding: 8rem 5%;
+    padding: 4rem 5%;
     background: linear-gradient(135deg, var(--primary-purple), #5a2d9e);
     text-align: center;
     position: relative;
@@ -1742,7 +1742,7 @@ iframe {
     }
 
     .section-subtitle {
-        margin-top: 20px;
+        margin-top: 10px;
         font-size: 0.8rem;
         letter-spacing: 2px;
     }
@@ -3524,7 +3524,7 @@ body.familyday-page {
 .experience-events .service-features,
 .experience-events .service-promise,
 .experience-events .service-cta {
-    padding: var(--spacing-2xl) 5%;
+    padding: 80px 5%;
     text-align: center;
 }
 
@@ -3580,7 +3580,7 @@ body.familyday-page {
 }
 
 /* ===============================
-   CORPORATE FAMILY EVENTS PAGE STYLES
+ FAMILY EVENTS PAGE STYLES
 ================================ */
 
 .corporate-family .service-hero {
@@ -3738,7 +3738,7 @@ body.familyday-page {
 }
 
 .corporate-family .service-intro {
-    padding: var(--spacing-2xl) 5%;
+    padding: 80px 5%;
 }
 
 /* Responsive */
