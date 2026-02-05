@@ -47,7 +47,7 @@ window.addEventListener('load', () => {
         setTimeout(() => {
             popup.classList.add("active");
             localStorage.setItem("popupCount", popupCount + 1);
-        }, 10000); // 10 sec
+        }, 8000); // 10 sec
     }
 });
 

@@ -630,7 +630,7 @@ nav.scrolled {
     display: flex;
     gap: 30px;
     width: 8000px;
-    animation: scroll 40s linear infinite;
+    animation: scroll 100s linear infinite;
 }
 
 
@@ -1255,6 +1255,7 @@ footer {
     outline: 3px solid var(--accent-gold);
     outline-offset: 4px;
 }
+
 
 /* ==========================================
    CONTACT PAGE - DESKTOP
@@ -3102,7 +3103,8 @@ body.familyday-page {
     max-width: 900px;
     margin: auto;
     /* background: var(--light-cream); */
-    padding: 3rem;
+    padding: 1rem;
+    align-items: center;
     border-radius: 20px;
     box-shadow: var(--shadow-md);
 }
@@ -3138,6 +3140,13 @@ body.familyday-page {
 
     .private-events .hero-content h1 {
         font-size: 2.2rem;
+    }
+
+    .private-events .service-promise,
+    .private-events .promise-box {
+        text-align: left;
+        justify-content: center;
+        align-items: center;
     }
 }
 /* ===============================
@@ -3855,4 +3864,14 @@ body.familyday-page {
 
 .hero-overlay {
     pointer-events: none;
+}
+
+.break-mobile {
+    display: inline;
+}
+
+@media (max-width: 768px) {
+    .break-mobile {
+        display: block;
+    }
 }
