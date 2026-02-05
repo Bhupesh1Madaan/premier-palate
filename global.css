@@ -975,6 +975,35 @@ footer {
     color: var(--accent-gold);
 }
 
+@media (max-width: 768px) {
+
+    .floating-contacts {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    .floating-contacts .floating-btn {
+        position: fixed;
+        bottom: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 1.6rem;
+        pointer-events: auto;
+        margin-bottom: 50px;
+    }
+
+    /* FIRST BUTTON → LEFT BOTTOM */
+    .floating-contacts .floating-btn:nth-child(1) {
+        left: 30px;
+    }
+
+    /* SECOND BUTTON → RIGHT BOTTOM */
+    .floating-contacts .floating-btn:nth-child(2) {
+        right: 30px;
+    }
+}
+
 /* ==========================================
    MENU MODAL - DESKTOP
    ========================================== */

@@ -3,19 +3,19 @@
 /* ===============================
    MENU DATA (SAFE - ONLY DATA)
 ================================ */
-const menuData = {
-    "Soups": [
-        { name: "Classic Tomato Soup", desc: "With condiments of Bread croutons, butter & fresh Cream" },
-        { name: "Makai Shorba", desc: "Vinegar, soya, mushrooms sweetcorns, black pepper" },
-        { name: "Hot & Sour", desc: "Broth generously spiced with fragrant spices & herbs like lemon grass, galangal" },
-        { name: "Manchow Soup", desc: "Dark brown vegetable broth with vegetables served with noodles" },
-        { name: "Cream of Mushroom", desc: "Button mushrooms, Green onions, garlic & ginger stock" },
-        { name: "Cream of Broccoli Almond", desc: "Broth made with broccoli stems, rice milk & fat free cream cheese" },
-        { name: "Pumpkin Soup", desc: "Soup made with pumpkin & subtle herbs" },
-        { name: "Chicken Soup", desc: "Chicken broth gently simmered with herbs & warm flavors" }
-    ]
-    // baaki categories same rahengi (no issue here)
-};
+// const menuData = {
+//     "Soups": [
+//         { name: "Classic Tomato Soup", desc: "With condiments of Bread croutons, butter & fresh Cream" },
+//         { name: "Makai Shorba", desc: "Vinegar, soya, mushrooms sweetcorns, black pepper" },
+//         { name: "Hot & Sour", desc: "Broth generously spiced with fragrant spices & herbs like lemon grass, galangal" },
+//         { name: "Manchow Soup", desc: "Dark brown vegetable broth with vegetables served with noodles" },
+//         { name: "Cream of Mushroom", desc: "Button mushrooms, Green onions, garlic & ginger stock" },
+//         { name: "Cream of Broccoli Almond", desc: "Broth made with broccoli stems, rice milk & fat free cream cheese" },
+//         { name: "Pumpkin Soup", desc: "Soup made with pumpkin & subtle herbs" },
+//         { name: "Chicken Soup", desc: "Chicken broth gently simmered with herbs & warm flavors" }
+//     ]
+//     // baaki categories same rahengi (no issue here)
+// };
 
 
 /* ===============================
@@ -36,20 +36,36 @@ function closePopup() {
    AUTO POPUP — MAX 2 TIMES
 ============================ */
 
-window.addEventListener('load', () => {
-    const popup = document.getElementById("popupForm");
-    if (!popup) return;
+fetch('components/popup.html')
+    .then(res => res.text())
+    .then(data => {
+        const placeholder = document.getElementById('popup-placeholder');
+        if (!placeholder) return;
 
-    let popupCount = localStorage.getItem("popupCount");
-    popupCount = popupCount ? parseInt(popupCount) : 0;
+        placeholder.innerHTML = data;
 
-    if (popupCount < 2) {
-        setTimeout(() => {
-            popup.classList.add("active");
-            localStorage.setItem("popupCount", popupCount + 1);
-        }, 8000); // 10 sec
-    }
-});
+        const popup = document.getElementById("popupForm");
+        if (!popup) return;
+
+        // 👉 AUTO POPUP — MAX 2 TIMES (LIFETIME)
+        let popupCount = localStorage.getItem("popupCount");
+        popupCount = popupCount ? parseInt(popupCount) : 0;
+
+        if (popupCount < 2) {
+            setTimeout(() => {
+                popup.classList.add("active");
+                localStorage.setItem("popupCount", popupCount + 1);
+            }, 8000); // 8 sec
+        }
+
+        // 👉 Outside click close
+        popup.addEventListener("click", (e) => {
+            if (e.target.id === "popupForm") {
+                closePopup();
+            }
+        });
+    });
+
 
 // Close on outside click (delegation safe)
 document.addEventListener('click', (e) => {
