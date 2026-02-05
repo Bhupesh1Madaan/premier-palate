@@ -290,3 +290,47 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(() => showSlide(index + 1), 5000);
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+
+    const floatingContacts = document.querySelector('.floating-contacts');
+    if (!floatingContacts) return; // safety guard
+
+    let lastScrollY = window.scrollY;
+    let hideTimeout;
+
+    function showButtons() {
+        floatingContacts.classList.remove('hide');
+        floatingContacts.classList.add('show');
+
+        clearTimeout(hideTimeout);
+        hideTimeout = setTimeout(() => {
+            floatingContacts.classList.remove('show');
+            floatingContacts.classList.add('hide');
+        }, 3000);
+    }
+
+    function hideButtons() {
+        floatingContacts.classList.remove('show');
+        floatingContacts.classList.add('hide');
+    }
+
+    // Show on first load (mobile only)
+    if (window.innerWidth <= 768) {
+        showButtons();
+    }
+
+    window.addEventListener('scroll', () => {
+        if (window.innerWidth > 768) return;
+
+        if (window.scrollY < lastScrollY) {
+            // scrolling up
+            showButtons();
+        } else {
+            // scrolling down
+            hideButtons();
+        }
+
+        lastScrollY = window.scrollY;
+    });
+
+});

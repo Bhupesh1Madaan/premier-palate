@@ -939,6 +939,7 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
 .floating-btn {
@@ -981,7 +982,20 @@ footer {
         position: fixed;
         inset: 0;
         pointer-events: none;
+        transition: transform 0.4s ease, opacity 0.4s ease;
     }
+
+         .floating-contacts.hide {
+             transform: translateY(120%);
+             opacity: 0;
+             pointer-events: none;
+         }
+    
+         .floating-contacts.show {
+             transform: translateY(0);
+             opacity: 1;
+             pointer-events: auto;
+         }
 
     .floating-contacts .floating-btn {
         position: fixed;
