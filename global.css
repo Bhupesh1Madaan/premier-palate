@@ -990,17 +990,17 @@ footer {
         height: 55px;
         font-size: 1.6rem;
         pointer-events: auto;
-        margin-bottom: 50px;
+        margin-bottom: 30px;
     }
 
     /* FIRST BUTTON → LEFT BOTTOM */
     .floating-contacts .floating-btn:nth-child(1) {
-        left: 30px;
+        left: 20px;
     }
 
     /* SECOND BUTTON → RIGHT BOTTOM */
     .floating-contacts .floating-btn:nth-child(2) {
-        right: 30px;
+        right: 20px;
     }
 }
 
