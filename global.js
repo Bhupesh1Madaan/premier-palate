@@ -32,56 +32,40 @@ function closePopup() {
     if (popup) popup.classList.remove("active");
 }
 
-/* ============================
-   AUTO POPUP — MAX 2 TIMES
-============================ */
-
 fetch('components/popup.html')
     .then(res => res.text())
-    .then(data => {
+    .then(html => {
         const placeholder = document.getElementById('popup-placeholder');
         if (!placeholder) return;
 
-        placeholder.innerHTML = data;
+        placeholder.innerHTML = html;
 
-        const popup = document.getElementById("popupForm");
+        const popup = document.getElementById('popupForm');
         if (!popup) return;
 
-        // 👉 AUTO POPUP — MAX 2 TIMES (LIFETIME)
-        let popupCount = localStorage.getItem("popupCount");
-        popupCount = popupCount ? parseInt(popupCount) : 0;
+        // 🔥 AUTO POPUP — EVERY PAGE AFTER 8 SECONDS
+        setTimeout(() => {
+            popup.classList.add('active');
+        }, 8000);
 
-        if (popupCount < 2) {
-            setTimeout(() => {
-                popup.classList.add("active");
-                localStorage.setItem("popupCount", popupCount + 1);
-            }, 8000); // 8 sec
-        }
-
-        // 👉 Outside click close
-        popup.addEventListener("click", (e) => {
-            if (e.target.id === "popupForm") {
+        // 🔹 OUTSIDE CLICK CLOSE
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
                 closePopup();
             }
         });
-    });
+    })
+    .catch(err => console.error('Popup load failed:', err));
 
 
-// Close on outside click (delegation safe)
-document.addEventListener('click', (e) => {
-    if (e.target && e.target.id === 'popupForm') {
-        closePopup();
-    }
-});
+// 🔹 MANUAL CONTROLS
+function openPopup() {
+    document.getElementById('popupForm')?.classList.add('active');
+}
 
-fetch('components/popup.html')
-    .then(res => res.text())
-    .then(data => {
-        const placeholder = document.getElementById('popup-placeholder');
-        if (placeholder) {
-            placeholder.innerHTML = data;
-        }
-    });
+function closePopup() {
+    document.getElementById('popupForm')?.classList.remove('active');
+}
 
 
 /* ===============================
