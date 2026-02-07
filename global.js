@@ -177,36 +177,37 @@ fetch('components/footer.html')
     });
 
 // Load Navbar
-// Load Navbar
-fetch('components/navbar.html')
-    .then(res => res.text())
-    .then(data => {
-        const nav = document.getElementById('navbar-placeholder');
-        if (nav) {
+document.addEventListener("DOMContentLoaded", () => {
+    fetch('/components/navbar.html')
+        .then(res => res.text())
+        .then(data => {
+            const nav = document.getElementById('navbar-placeholder');
+            if (!nav) return;
+
             nav.innerHTML = data;
 
-            // Hamburger toggle
             const hamburger = document.getElementById("hamburger");
             const navLinks = document.querySelector(".nav-links");
 
             if (hamburger && navLinks) {
                 hamburger.addEventListener("click", () => {
                     navLinks.classList.toggle("active");
+                    hamburger.classList.toggle("active");
                 });
             }
 
-            // SERVICES dropdown toggle (MOBILE)
             const dropdownToggle = document.querySelector(".dropdown-toggle");
             const dropdown = document.querySelector(".dropdown");
 
             if (dropdownToggle && dropdown) {
                 dropdownToggle.addEventListener("click", (e) => {
-                    e.preventDefault(); // page jump avoid
+                    e.preventDefault();
                     dropdown.classList.toggle("active");
                 });
             }
-        }
-    });
+        });
+});
+
 // Select all elements with a background image
 const parallaxSections = Array.from(document.querySelectorAll('section, footer'));
 
@@ -318,3 +319,29 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
+
+function sendWhatsApp(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const message = document.getElementById("message").value;
+
+    const whatsappMessage =
+        `📩 *New Contact Form Message*
+
+👤 *Name:* ${name}
+📧 *Email:* ${email}
+📞 *Phone:* ${phone}
+💬 *Message:* ${message}`;
+
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+
+    const whatsappNumber = "919319304595";
+
+    window.open(
+        `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
+        "_blank"
+    );
+}

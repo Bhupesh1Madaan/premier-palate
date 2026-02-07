@@ -3889,12 +3889,18 @@ body.familyday-page {
 }
 
 .parallax {
-    background-attachment: scroll; /* fallback for mobile */
+    background-attachment: fixed;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
     overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .parallax {
+        background-attachment: scroll;
+    }
 }
 
 .hero-overlay {
