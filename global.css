@@ -39,7 +39,7 @@
 
     /* Z-index Scale */
     --z-dropdown: 2000;
-    --z-nav: 1000;
+    --z-nav: 9999;
     --z-floating: 999;
     --z-modal: 9999;
     --z-modal-content: 10000;
@@ -1615,14 +1615,18 @@ iframe {
 }
 
 /* ==========================================
-   ==========================================
    MOBILE STYLES (768px and below)
-   ==========================================
    ========================================== */
 @media (max-width: 768px) {
 
     nav {
         padding: 1rem 5%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
     }
 
     .logo {
@@ -1642,6 +1646,9 @@ iframe {
         border: none;
         cursor: pointer;
         z-index: 1001;
+        pointer-events: auto;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
     }
 
     .hamburger span {
@@ -2046,7 +2053,7 @@ iframe {
 /* ==========================================
    PARALLAX HERO (✅ FIXED - MOBILE FIX ADDED)
    ========================================== */
-.parallax-hero {
+/* .parallax-hero {
     position: relative;
     min-height: 80vh;
     background-size: cover;
@@ -2064,7 +2071,7 @@ iframe {
     .parallax-hero {
         background-attachment: scroll;
     }
-}
+} */
 
 /* ==========================================
    OUR CLIENTS SECTION
@@ -3960,21 +3967,21 @@ background: url("gallery/WhatsApp Image 2026-02-02 at 1.08.46 PM (1).jpeg") cent
     }
 }
 
-.parallax {
+/* .parallax {
     background-attachment: fixed;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
     overflow: hidden;
-}
+} */
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .hero {
     background-attachment: scroll !important;
     transform: none !important;
   }
-}
+} */
 
 .hero-overlay {
     pointer-events: none;
