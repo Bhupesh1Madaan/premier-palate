@@ -1982,7 +1982,7 @@ iframe {
     }
 
     .about-hero {
-        height: 50svh;
+        height: 50vh;
     }
 
     .about-hero h1 {
@@ -3994,11 +3994,5 @@ background: url("gallery/WhatsApp Image 2026-02-02 at 1.08.46 PM (1).jpeg") cent
 @media (max-width: 768px) {
     .break-mobile {
         display: block;
-    }
-}
-
-@supports not (height: 50svh) {
-    .about-hero {
-        min-height: 50vh;
     }
 }

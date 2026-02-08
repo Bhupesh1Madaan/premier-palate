@@ -1,23 +1,3 @@
-
-
-/* ===============================
-   MENU DATA (SAFE - ONLY DATA)
-================================ */
-// const menuData = {
-//     "Soups": [
-//         { name: "Classic Tomato Soup", desc: "With condiments of Bread croutons, butter & fresh Cream" },
-//         { name: "Makai Shorba", desc: "Vinegar, soya, mushrooms sweetcorns, black pepper" },
-//         { name: "Hot & Sour", desc: "Broth generously spiced with fragrant spices & herbs like lemon grass, galangal" },
-//         { name: "Manchow Soup", desc: "Dark brown vegetable broth with vegetables served with noodles" },
-//         { name: "Cream of Mushroom", desc: "Button mushrooms, Green onions, garlic & ginger stock" },
-//         { name: "Cream of Broccoli Almond", desc: "Broth made with broccoli stems, rice milk & fat free cream cheese" },
-//         { name: "Pumpkin Soup", desc: "Soup made with pumpkin & subtle herbs" },
-//         { name: "Chicken Soup", desc: "Chicken broth gently simmered with herbs & warm flavors" }
-//     ]
-//     // baaki categories same rahengi (no issue here)
-// };
-
-
 /* ===============================
    POPUP FORM (HOME PAGE ONLY)
 ================================ */
@@ -145,25 +125,25 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 /* ===============================
    LOAD NAVBAR COMPONENT
 ================================ */
-fetch('components/navbar.html')
-    .then(res => res.text())
-    .then(data => {
-        const navHolder = document.getElementById('navbar-placeholder');
-        if (navHolder) {
-            navHolder.innerHTML = data;
+// fetch('components/navbar.html')
+//     .then(res => res.text())
+//     .then(data => {
+//         const navHolder = document.getElementById('navbar-placeholder');
+//         if (navHolder) {
+//             navHolder.innerHTML = data;
 
-            /* 🔽 Navbar specific JS yahin likhna 🔽 */
-            const servicesItem = document.querySelector('.services-item');
-            if (servicesItem) {
-                servicesItem.addEventListener('mouseenter', () => {
-                    servicesItem.classList.add('open');
-                });
-                servicesItem.addEventListener('mouseleave', () => {
-                    servicesItem.classList.remove('open');
-                });
-            }
-        }
-    });
+//             /* 🔽 Navbar specific JS yahin likhna 🔽 */
+//             const servicesItem = document.querySelector('.services-item');
+//             if (servicesItem) {
+//                 servicesItem.addEventListener('mouseenter', () => {
+//                     servicesItem.classList.add('open');
+//                 });
+//                 servicesItem.addEventListener('mouseleave', () => {
+//                     servicesItem.classList.remove('open');
+//                 });
+//             }
+//         }
+//     });
 
 
 /* ===============================
@@ -177,36 +157,88 @@ fetch('components/footer.html')
     });
 
 // Load Navbar
-document.addEventListener("DOMContentLoaded", () => {
+// document.addEventListener("DOMContentLoaded", () => {
+//     fetch('/components/navbar.html')
+//         .then(res => res.text())
+//         .then(data => {
+//             const nav = document.getElementById('navbar-placeholder');
+//             if (!nav) return;
+
+//             nav.innerHTML = data;
+
+//             const hamburger = document.getElementById("hamburger");
+//             const navLinks = document.querySelector(".nav-links");
+
+//             if (hamburger && navLinks) {
+//                 hamburger.addEventListener("click", () => {
+//                     navLinks.classList.toggle("active");
+//                     hamburger.classList.toggle("active");
+//                 });
+//             }
+
+//             const dropdownToggle = document.querySelector(".dropdown-toggle");
+//             const dropdown = document.querySelector(".dropdown");
+
+//             if (dropdownToggle && dropdown) {
+//                 dropdownToggle.addEventListener("click", (e) => {
+//                     e.preventDefault();
+//                     dropdown.classList.toggle("active");
+//                 });
+//             }
+//         });
+// });
+
+function initNavbar() {
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 100);
+        });
+    }
+
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.querySelector(".nav-links");
+
+    if (hamburger && navLinks) {
+        hamburger.onclick = () => {
+            navLinks.classList.toggle("active");
+            hamburger.classList.toggle("active");
+        };
+    }
+
+    const dropdownToggle = document.querySelector(".dropdown-toggle");
+    const dropdown = document.querySelector(".dropdown");
+
+    if (dropdownToggle && dropdown) {
+        dropdownToggle.onclick = (e) => {
+            e.preventDefault();
+            dropdown.classList.toggle("active");
+        };
+    }
+}
+
+function loadNavbar() {
+    const navHolder = document.getElementById('navbar-placeholder');
+    if (!navHolder) return;
+
     fetch('/components/navbar.html')
         .then(res => res.text())
-        .then(data => {
-            const nav = document.getElementById('navbar-placeholder');
-            if (!nav) return;
-
-            nav.innerHTML = data;
-
-            const hamburger = document.getElementById("hamburger");
-            const navLinks = document.querySelector(".nav-links");
-
-            if (hamburger && navLinks) {
-                hamburger.addEventListener("click", () => {
-                    navLinks.classList.toggle("active");
-                    hamburger.classList.toggle("active");
-                });
-            }
-
-            const dropdownToggle = document.querySelector(".dropdown-toggle");
-            const dropdown = document.querySelector(".dropdown");
-
-            if (dropdownToggle && dropdown) {
-                dropdownToggle.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    dropdown.classList.toggle("active");
-                });
-            }
+        .then(html => {
+            navHolder.innerHTML = html;
+            initNavbar(); // 👈 VERY IMPORTANT
         });
+}
+
+/* Initial load */
+document.addEventListener("DOMContentLoaded", loadNavbar);
+
+/* iOS Safari back/forward fix */
+window.addEventListener("pageshow", e => {
+    if (e.persisted) {
+        loadNavbar();
+    }
 });
+
 
 // Select all elements with a background image
 const parallaxSections = Array.from(document.querySelectorAll('section, footer'));
