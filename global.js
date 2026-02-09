@@ -241,24 +241,24 @@ window.addEventListener("pageshow", e => {
 
 
 // Select all elements with a background image
-const parallaxSections = Array.from(document.querySelectorAll('section, footer'));
+// const parallaxSections = Array.from(document.querySelectorAll('section, footer'));
 
-parallaxSections.forEach(section => {
-    const bg = window.getComputedStyle(section).backgroundImage;
-    if (bg && bg !== 'none') {
-        section.classList.add('parallax');
-    }
-});
+// parallaxSections.forEach(section => {
+//     const bg = window.getComputedStyle(section).backgroundImage;
+//     if (bg && bg !== 'none') {
+//         section.classList.add('parallax');
+//     }
+// });
 
-window.addEventListener('scroll', function () {
-    parallaxSections.forEach(section => {
-        const bg = window.getComputedStyle(section).backgroundImage;
-        if (bg && bg !== 'none') {
-            const offset = window.pageYOffset - section.offsetTop;
-            section.style.backgroundPositionY = offset * 0.5 + "px"; // Adjust 0.5 for speed
-        }
-    });
-});
+// window.addEventListener('scroll', function () {
+//     parallaxSections.forEach(section => {
+//         const bg = window.getComputedStyle(section).backgroundImage;
+//         if (bg && bg !== 'none') {
+//             const offset = window.pageYOffset - section.offsetTop;
+//             section.style.backgroundPositionY = offset * 0.5 + "px"; // Adjust 0.5 for speed
+//         }
+//     });
+// });
 
 
 document.addEventListener("DOMContentLoaded", () => {
