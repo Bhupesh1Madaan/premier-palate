@@ -1432,7 +1432,7 @@ iframe {
 .about-hero {
     height: 70vh;
     background: linear-gradient(rgba(61, 27, 111, 0.85), rgba(61, 27, 111, 0.7)),
-        url("gallery/WhatsApp Image 2026-02-07 at 12.23.28 AM.jpeg") top/cover no-repeat;
+        url(gallery/WhatsApp Image 2026-02-07 at 12.08.08AM.jpeg") top/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
