@@ -250,7 +250,7 @@ nav.scrolled {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, rgba(61, 27, 111, 0.85), rgba(61, 27, 111, 0.65)),
-        url('gallery/WhatsApp Image 2026-02-08 at 11.17.16 PM.jpeg') center/cover;
+        url('gallery/WhatsApp Image 2026-01-29 at 4.26.54 PM.jpeg') center/cover;
     animation: slowZoom 20s infinite alternate;
 }
 
@@ -1310,7 +1310,7 @@ footer {
 .contact-hero {
     height: 60vh;
     background: linear-gradient(rgba(61, 27, 111, 0.85), rgba(61, 27, 111, 0.7)),
-        url("gallery/WhatsApp Image 2026-01-29 at 4.28.57 PM.jpeg") center/cover no-repeat;
+        url("gallery/WhatsApp Image 2026-02-09 at 11.44.37 AM.jpeg") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3286,6 +3286,7 @@ background: url("gallery/WhatsApp Image 2026-02-02 at 1.08.46 PM (1).jpeg") cent
 
 .wedding-catering .split img {
     width: 100%;
+    height: 80%;
     border-radius: 14px;
     box-shadow: var(--shadow-md);
 }
@@ -3383,7 +3384,7 @@ background: url("gallery/WhatsApp Image 2026-02-02 at 1.08.46 PM (1).jpeg") cent
 
 .corporate-events .service-hero {
     height: 85vh;
-    background: url("gallery/WhatsApp Image 2026-02-08 at 10.25.24 PM.jpeg") center/cover no-repeat;
+    background: url("gallery/WhatsApp Image 2026-02-07 at 12.23.32 AM.jpeg") center/cover no-repeat;
     position: relative;
     display: flex;
     align-items: center;
@@ -3699,7 +3700,7 @@ background: url("gallery/WhatsApp Image 2026-02-02 at 1.08.46 PM (1).jpeg") cent
 
 .corporate-family .service-hero {
     height: 85vh;
-    background: url("assets/Gemini_Generated_Image_gllztfgllztfgllz.png") bottom/cover no-repeat;
+    background: url("gallery/WhatsApp Image 2026-02-08 at 10.25.24 PM.jpeg") bottom/cover no-repeat;
     position: relative;
     display: flex;
     align-items: center;
