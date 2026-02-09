@@ -3359,6 +3359,10 @@ background: url("gallery/WhatsApp Image 2026-02-02 at 1.08.46 PM (1).jpeg") cent
         align-items: center;
         padding: 1rem 1rem;
     }
+
+    .wedding-catering .service-features {
+        margin-top: -40%;
+    }
 }
 
 /* CTA */
@@ -3371,6 +3375,11 @@ background: url("gallery/WhatsApp Image 2026-02-02 at 1.08.46 PM (1).jpeg") cent
 @media (max-width: 768px) {
     .wedding-catering .split {
         grid-template-columns: 1fr;
+    }
+
+    .wedding-catering .split img {
+        width: 100%;
+        height: 100%;
     }
 
     .wedding-catering .hero-content h1 {
@@ -3442,6 +3451,7 @@ background: url("gallery/WhatsApp Image 2026-02-02 at 1.08.46 PM (1).jpeg") cent
 
 .corporate-events .split img {
     width: 100%;
+    height: 80%;
     border-radius: 14px;
     box-shadow: var(--shadow-md);
 }
@@ -3874,6 +3884,10 @@ background: url("gallery/WhatsApp Image 2026-02-02 at 1.08.46 PM (1).jpeg") cent
 
     .corporate-family .hero-content h1 {
         font-size: 2.2rem;
+    }
+
+    .corporate-events .service-features {
+        margin-top: -40%;
     }
 }
 
