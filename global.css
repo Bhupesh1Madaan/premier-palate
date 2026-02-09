@@ -250,7 +250,7 @@ nav.scrolled {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, rgba(61, 27, 111, 0.85), rgba(61, 27, 111, 0.65)),
-        url('gallery/WhatsApp Image 2026-02-07 at 12.08.08 AM.jpeg') center/cover;
+        url('gallery/WhatsApp Image 2026-02-08 at 11.17.16 PM.jpeg') center/cover;
     animation: slowZoom 20s infinite alternate;
 }
 
@@ -1310,7 +1310,7 @@ footer {
 .contact-hero {
     height: 60vh;
     background: linear-gradient(rgba(61, 27, 111, 0.85), rgba(61, 27, 111, 0.7)),
-        url("https://images.unsplash.com/photo-1555244162-803834f70033?w=1600&q=80") center/cover no-repeat;
+        url("gallery/WhatsApp Image 2026-01-29 at 4.28.57 PM.jpeg") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1432,7 +1432,7 @@ iframe {
 .about-hero {
     height: 70vh;
     background: linear-gradient(rgba(61, 27, 111, 0.85), rgba(61, 27, 111, 0.7)),
-        url("gallery/WhatsApp Image 2026-01-29 at 4.26.54 PM.jpeg") top/cover no-repeat;
+        url("gallery/WhatsApp Image 2026-02-07 at 12.23.28 AM.jpeg") top/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3383,7 +3383,7 @@ background: url("gallery/WhatsApp Image 2026-02-02 at 1.08.46 PM (1).jpeg") cent
 
 .corporate-events .service-hero {
     height: 85vh;
-    background: url("gallery/WhatsApp Image 2026-02-07 at 12.23.35 AM (1).jpeg") center/cover no-repeat;
+    background: url("gallery/WhatsApp Image 2026-02-08 at 10.25.24 PM.jpeg") center/cover no-repeat;
     position: relative;
     display: flex;
     align-items: center;
@@ -3553,7 +3553,7 @@ background: url("gallery/WhatsApp Image 2026-02-02 at 1.08.46 PM (1).jpeg") cent
 
 .experience-events .service-hero {
     height: 85vh;
-    background: url("https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=1600&q=80") center/cover no-repeat;
+    background: url("gallery/WhatsApp Image 2026-01-29 at 4.43.26 PM (1).jpeg") center/cover no-repeat;
     position: relative;
     display: flex;
     align-items: center;
@@ -3699,7 +3699,7 @@ background: url("gallery/WhatsApp Image 2026-02-02 at 1.08.46 PM (1).jpeg") cent
 
 .corporate-family .service-hero {
     height: 85vh;
-    background: url("https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=1600&q=80") center/cover no-repeat;
+    background: url("assets/Gemini_Generated_Image_gllztfgllztfgllz.png") bottom/cover no-repeat;
     position: relative;
     display: flex;
     align-items: center;
@@ -3882,7 +3882,7 @@ background: url("gallery/WhatsApp Image 2026-02-02 at 1.08.46 PM (1).jpeg") cent
 
 .menu-page .service-hero {
     height: 65vh;
-    background: url("https://images.unsplash.com/photo-1604908177520-097d8bbd2cfa?w=1600&q=80") center/cover no-repeat;
+    background: url("assets/1.png") center/cover no-repeat;
     position: relative;
     display: flex;
     align-items: center;
