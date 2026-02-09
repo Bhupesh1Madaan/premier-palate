@@ -37,6 +37,61 @@
             break-inside: avoid;
         }
 
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.50);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85%;
+            border-radius: 12px;
+        }
+
+        .lightbox-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 48px;
+            color: #d4af37;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 20px;
+            user-select: none;
+        }
+
+        .lightbox-arrow.left {
+            left: 10px;
+        }
+
+        .lightbox-arrow.right {
+            right: 10px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 40px;
+            background: none;
+            border: none;
+            color: #d4af37;
+            cursor: pointer;
+        }
+
+
         @media(max-width: 1024px) {
             .gallery-grid {
                 column-count: 3;
@@ -65,21 +120,96 @@
         <h1 class="gallery-title">Our Gallery</h1>
         <div class="gallery-grid" id="galleryGrid"></div>
     </section>
+    
 
     <div id="footer-placeholder"></div>
 
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">×</button>
+        <button class="lightbox-arrow left" id="prevBtn">‹</button>
+        <img id="lightboxImg" alt="">
+        <button class="lightbox-arrow right" id="nextBtn">›</button>
+    </div>
+
     <script>
+        let images = [];
+        let currentIndex = 0;
+
+        const grid = document.getElementById('galleryGrid');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const closeBtn = document.getElementById('lightboxClose');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+
         fetch('gallery-images.json')
             .then(res => res.json())
-            .then(images => {
-                const grid = document.getElementById('galleryGrid');
-                images.forEach(src => {
+            .then(data => {
+                images = data;
+
+                images.forEach((src, index) => {
                     const img = document.createElement('img');
                     img.src = src;
+                    img.loading = 'lazy';
+
+                    img.addEventListener('click', () => openLightbox(index));
                     grid.appendChild(img);
                 });
             });
+
+        function openLightbox(index) {
+            currentIndex = index;
+            updateImage();
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+        }
+
+        function updateImage() {
+            lightboxImg.src = images[currentIndex];
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateImage();
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateImage();
+        }
+
+        nextBtn.addEventListener('click', nextImage);
+        prevBtn.addEventListener('click', prevImage);
+        closeBtn.addEventListener('click', closeLightbox);
+
+        lightbox.addEventListener('click', e => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', e => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Swipe support
+        let startX = 0;
+        lightboxImg.addEventListener('touchstart', e => {
+            startX = e.touches[0].clientX;
+        });
+
+        lightboxImg.addEventListener('touchend', e => {
+            const endX = e.changedTouches[0].clientX;
+            if (startX - endX > 50) nextImage();
+            if (endX - startX > 50) prevImage();
+        });
     </script>
+
 
 </body>
 
