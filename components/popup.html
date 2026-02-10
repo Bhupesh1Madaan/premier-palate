@@ -1,11 +1,16 @@
 <!-- Popup Form -->
 <div class="popup-overlay" id="popupForm">
     <div class="popup-content">
+
         <button class="popup-close" onclick="closePopup()">×</button>
-        <div class="popup-header">
+
+        <!-- HEADER -->
+        <div class="popup-header" id="popupHeader">
             <h2>Plan Your Event</h2>
             <p>Fill in the details and we'll get back to you shortly</p>
         </div>
+
+        <!-- FORM -->
         <form class="popup-form" id="eventForm" onsubmit="submitForm(event)">
             <div class="form-group">
                 <label for="fullName">Full Name *</label>
@@ -33,17 +38,16 @@
                     <input type="number" id="guests" name="guests" required placeholder="50" min="1">
                 </div>
             </div>
-            
 
             <div class="form-row">
                 <div class="form-group">
                     <label for="eventType">Event Type *</label>
                     <select id="eventType" name="eventType" required>
                         <option value="">Select Event Type</option>
-                        <option value="Private Event">Private Events</option>
-                        <option value="Wedding Catering">Wedding Catering</option>
-                        <option value="Corporate Event">Corporate Events</option>
+                        <option value="Private Event">Private Event</option>
                         <option value="Luxury Catering">Luxury Catering</option>
+                        <option value="Wedding Catering">Wedding Catering</option>
+                        <option value="Corporate Event">Corporate Catering</option>
                         <option value="Family Days & Sports Event">Family Days & Sports Event</option>
                         <option value="Other">Other</option>
                     </select>
@@ -56,5 +60,15 @@
 
             <button type="submit" class="submit-btn">Send Message</button>
         </form>
+
+        <!-- THANK YOU (hidden by default) -->
+        <div class="thank-you-message" id="thankYouMessage" style="display:none; text-align:center;">
+            <h2 style="color: var(--accent-gold); margin-bottom: 1rem;">Thank you! ✨</h2>
+            <p style="color: rgba(253, 204, 94, 0.85);">
+                Your details have been received.<br>
+                Our team will contact you shortly.
+            </p>
+        </div>
+
     </div>
 </div>

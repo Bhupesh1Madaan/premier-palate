@@ -49,39 +49,49 @@ function closePopup() {
 
 
 /* ===============================
-   FORM SUBMIT → WHATSAPP
+   FORM SUBMIT → GOOGLE SHEETS
 ================================ */
 function submitForm(e) {
     e.preventDefault();
 
-    const fullName = document.getElementById('fullName');
-    const email = document.getElementById('email');
-    const phone = document.getElementById('phone');
-    const city = document.getElementById('city');
-    const guests = document.getElementById('guests');
-    const eventType = document.getElementById('eventType');
-    const eventDate = document.getElementById('eventDate');
+    const form = document.getElementById('eventForm');
+    const thankYou = document.getElementById('thankYouMessage');
 
-    if (!fullName || !phone) return;
+    const data = {
+        fullName: document.getElementById('fullName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        city: document.getElementById('city').value,
+        guests: document.getElementById('guests').value,
+        eventType: document.getElementById('eventType').value,
+        eventDate: document.getElementById('eventDate').value
+    };
 
-    const message = `*New Event Inquiry - Premier Palate*
+    fetch('https://script.google.com/macros/s/AKfycbyK1NfDi8lTbOlYLlN3SdMDXWmzdkhimnAWZa7cw4X9PL0ar9m88Oq2B9brm2Mtur-pmw/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(() => {
+            // Hide form + header
+            form.style.display = 'none';
+            document.getElementById('popupHeader').style.display = 'none';
 
-📝 *Full Name:* ${fullName.value}
-📧 *Email:* ${email?.value || ''}
-📱 *Phone:* ${phone.value}
-🏙️ *City:* ${city?.value || ''}
-👥 *Guests:* ${guests?.value || ''}
-🎉 *Event Type:* ${eventType?.value || ''}
-📅 *Event Date:* ${eventDate?.value || ''}
+            // Show thank you
+            thankYou.style.display = 'block';
 
-_Sent from Premier Palate Website_`;
+            // Reset form
+            form.reset();
+        })
+        .catch(() => {
+            alert('Submission failed. Please try again.');
+        });
 
-    const whatsappUrl = `https://wa.me/919319304595?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-
-    closePopup();
-    document.getElementById('eventForm')?.reset();
 }
+
 
 
 /* ===============================
@@ -376,4 +386,67 @@ function sendWhatsApp(e) {
         `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
         "_blank"
     );
+}
+
+
+const MENU_PDF_URL = 'assets/Premier_Palate_Menu.pdf';
+
+/* OPEN GATE */
+function openMenuGate() {
+    // Optional: remember user
+    if (localStorage.getItem('menuUnlocked')) {
+        window.open(MENU_PDF_URL, '_blank');
+        return;
+    }
+    document.getElementById('menuGatePopup').classList.add('active');
+}
+
+/* CLOSE GATE */
+function closeMenuGate() {
+    document.getElementById('menuGatePopup').classList.remove('active');
+}
+
+/* SUBMIT + VALIDATE */
+function submitMenuLead() {
+    const name = document.getElementById('menuLeadName').value.trim();
+    const phone = document.getElementById('menuLeadPhone').value.trim();
+    const city = document.getElementById('menuLeadCity').value.trim();
+    const error = document.getElementById('menuLeadError');
+
+    if (name.length < 2) {
+        error.textContent = 'Please enter your name';
+        return;
+    }
+
+    if (!/^[6-9]\d{9}$/.test(phone)) {
+        error.textContent = 'Enter a valid 10-digit mobile number';
+        return;
+    }
+
+    if (city.length < 2) {
+        error.textContent = 'Please enter your city';
+        return;
+    }
+
+    error.textContent = '';
+
+    // Save lead (Google Sheets)
+    fetch('https://script.google.com/macros/s/AKfycbyK1NfDi8lTbOlYLlN3SdMDXWmzdkhimnAWZa7cw4X9PL0ar9m88Oq2B9brm2Mtur-pmw/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            type: 'Menu View',
+            name,
+            phone,
+            city
+        })
+    });
+
+    // Remember user
+    localStorage.setItem('menuUnlocked', 'true');
+
+    // Close popup & open menu
+    closeMenuGate();
+    window.open(MENU_PDF_URL, '_blank');
 }
