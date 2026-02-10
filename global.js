@@ -67,7 +67,7 @@ function submitForm(e) {
         eventDate: document.getElementById('eventDate').value
     };
 
-    fetch('https://script.google.com/macros/s/AKfycbyK1NfDi8lTbOlYLlN3SdMDXWmzdkhimnAWZa7cw4X9PL0ar9m88Oq2B9brm2Mtur-pmw/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbwcak3NeLVDaFfuQG7mhJuNP17bFHCGq4_eOKQi6_yf056vrTzKJQGrefUqIkB3agAslg/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -389,49 +389,49 @@ function sendWhatsApp(e) {
 }
 
 
-const MENU_PDF_URL = 'assets/Premier_Palate_Menu.pdf';
+/* ===============================
+   MENU POPUP LOAD
+================================ */
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('./components/menupopup.html')
+        .then(res => res.text())
+        .then(html => {
+            const holder = document.getElementById('menu-popup-placeholder');
+            if (holder) holder.innerHTML = html;
+        })
+        .catch(() => { });
+});
 
-/* OPEN GATE */
-function openMenuGate() {
-    // Optional: remember user
-    if (localStorage.getItem('menuUnlocked')) {
-        window.open(MENU_PDF_URL, '_blank');
-        return;
-    }
+/* ===============================
+   MENU GATE LOGIC
+================================ */
+const MENU_PDF_URL = 'assets/Premier_Palate_Menu.pdf';
+let menuAction = 'view';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwcak3NeLVDaFfuQG7mhJuNP17bFHCGq4_eOKQi6_yf056vrTzKJQGrefUqIkB3agAslg/exec';
+
+function openMenuGate(action = 'view') {
+    menuAction = action;
     document.getElementById('menuGatePopup').classList.add('active');
 }
 
-/* CLOSE GATE */
 function closeMenuGate() {
     document.getElementById('menuGatePopup').classList.remove('active');
 }
 
-/* SUBMIT + VALIDATE */
 function submitMenuLead() {
     const name = document.getElementById('menuLeadName').value.trim();
     const phone = document.getElementById('menuLeadPhone').value.trim();
     const city = document.getElementById('menuLeadCity').value.trim();
     const error = document.getElementById('menuLeadError');
 
-    if (name.length < 2) {
-        error.textContent = 'Please enter your name';
-        return;
-    }
-
-    if (!/^[6-9]\d{9}$/.test(phone)) {
-        error.textContent = 'Enter a valid 10-digit mobile number';
-        return;
-    }
-
-    if (city.length < 2) {
-        error.textContent = 'Please enter your city';
+    if (!name || !/^[6-9]\d{9}$/.test(phone) || !city) {
+        error.textContent = 'Enter valid name, 10-digit mobile & city';
         return;
     }
 
     error.textContent = '';
 
-    // Save lead (Google Sheets)
-    fetch('https://script.google.com/macros/s/AKfycbyK1NfDi8lTbOlYLlN3SdMDXWmzdkhimnAWZa7cw4X9PL0ar9m88Oq2B9brm2Mtur-pmw/exec', {
+    fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
@@ -439,14 +439,29 @@ function submitMenuLead() {
             type: 'Menu View',
             name,
             phone,
-            city
+            city,
+            source: 'Menu Page'
         })
     });
 
-    // Remember user
-    localStorage.setItem('menuUnlocked', 'true');
-
-    // Close popup & open menu
     closeMenuGate();
     window.open(MENU_PDF_URL, '_blank');
+
+    if (menuAction === 'download') {
+        fetch(MENU_PDF_URL)
+            .then(res => res.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Premier_Palate_Menu.pdf';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            });
+    } else {
+        window.open(MENU_PDF_URL, '_blank');
+    }
 }
+

@@ -4011,3 +4011,31 @@ background: url("gallery/WhatsApp Image 2026-02-02 at 1.08.46 PM (1).jpeg") cent
         display: block;
     }
 }
+
+#menuGatePopup .popup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+#menuGatePopup input {
+    padding: 14px 16px;
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--accent-gold);
+    border: 1.5px solid rgba(253, 204, 94, 0.45);
+    border-radius: 12px;
+    transition: all 0.25s ease;
+}
+
+#menuGatePopup input::placeholder {
+    color: rgba(253, 204, 94, 0.55);
+}
+
+#menuGatePopup input:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(253, 204, 94, 0.18);
+}
