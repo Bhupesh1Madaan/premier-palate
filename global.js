@@ -23,10 +23,16 @@ fetch('components/popup.html')
         const popup = document.getElementById('popupForm');
         if (!popup) return;
 
-        // 🔥 AUTO POPUP — EVERY PAGE AFTER 8 SECONDS
-        setTimeout(() => {
-            popup.classList.add('active');
-        }, 8000);
+        // 🔥 AUTO POPUP — ONLY 2 TIMES TOTAL
+        const maxShows = 2;
+        const popupCount = Number(localStorage.getItem('popupAutoCount')) || 0;
+
+        if (popupCount < maxShows) {
+            setTimeout(() => {
+                popup.classList.add('active');
+                localStorage.setItem('popupAutoCount', popupCount + 1);
+            }, 8000);
+        }
 
         // 🔹 OUTSIDE CLICK CLOSE
         popup.addEventListener('click', (e) => {
@@ -36,17 +42,6 @@ fetch('components/popup.html')
         });
     })
     .catch(err => console.error('Popup load failed:', err));
-
-
-// 🔹 MANUAL CONTROLS
-function openPopup() {
-    document.getElementById('popupForm')?.classList.add('active');
-}
-
-function closePopup() {
-    document.getElementById('popupForm')?.classList.remove('active');
-}
-
 
 /* ===============================
    FORM SUBMIT → GOOGLE SHEETS
@@ -133,30 +128,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 
 /* ===============================
-   LOAD NAVBAR COMPONENT
-================================ */
-// fetch('components/navbar.html')
-//     .then(res => res.text())
-//     .then(data => {
-//         const navHolder = document.getElementById('navbar-placeholder');
-//         if (navHolder) {
-//             navHolder.innerHTML = data;
-
-//             /* 🔽 Navbar specific JS yahin likhna 🔽 */
-//             const servicesItem = document.querySelector('.services-item');
-//             if (servicesItem) {
-//                 servicesItem.addEventListener('mouseenter', () => {
-//                     servicesItem.classList.add('open');
-//                 });
-//                 servicesItem.addEventListener('mouseleave', () => {
-//                     servicesItem.classList.remove('open');
-//                 });
-//             }
-//         }
-//     });
-
-
-/* ===============================
    LOAD FOOTER COMPONENT
 ================================ */
 fetch('components/footer.html')
@@ -166,40 +137,9 @@ fetch('components/footer.html')
         if (footerHolder) footerHolder.innerHTML = data;
     });
 
-// Load Navbar
-// document.addEventListener("DOMContentLoaded", () => {
-//     fetch('/components/navbar.html')
-//         .then(res => res.text())
-//         .then(data => {
-//             const nav = document.getElementById('navbar-placeholder');
-//             if (!nav) return;
-
-//             nav.innerHTML = data;
-
-//             const hamburger = document.getElementById("hamburger");
-//             const navLinks = document.querySelector(".nav-links");
-
-//             if (hamburger && navLinks) {
-//                 hamburger.addEventListener("click", () => {
-//                     navLinks.classList.toggle("active");
-//                     hamburger.classList.toggle("active");
-//                 });
-//             }
-
-//             const dropdownToggle = document.querySelector(".dropdown-toggle");
-//             const dropdown = document.querySelector(".dropdown");
-
-//             if (dropdownToggle && dropdown) {
-//                 dropdownToggle.addEventListener("click", (e) => {
-//                     e.preventDefault();
-//                     dropdown.classList.toggle("active");
-//                 });
-//             }
-//         });
-// });
-
 function initNavbar() {
     const navbar = document.getElementById('navbar');
+
     if (navbar) {
         window.addEventListener('scroll', () => {
             navbar.classList.toggle('scrolled', window.scrollY > 100);
@@ -210,22 +150,30 @@ function initNavbar() {
     const navLinks = document.querySelector(".nav-links");
 
     if (hamburger && navLinks) {
-        hamburger.onclick = () => {
+        hamburger.addEventListener("click", (e) => {
+            e.stopPropagation();
             navLinks.classList.toggle("active");
             hamburger.classList.toggle("active");
-        };
+        });
     }
 
     const dropdownToggle = document.querySelector(".dropdown-toggle");
     const dropdown = document.querySelector(".dropdown");
 
     if (dropdownToggle && dropdown) {
-        dropdownToggle.onclick = (e) => {
+        dropdownToggle.addEventListener("click", (e) => {
             e.preventDefault();
+            e.stopPropagation(); // 🔥 critical
             dropdown.classList.toggle("active");
-        };
+        });
     }
+
+    // 🔹 Close dropdown if clicking outside
+    document.addEventListener("click", () => {
+        dropdown?.classList.remove("active");
+    });
 }
+
 
 function loadNavbar() {
     const navHolder = document.getElementById('navbar-placeholder');
@@ -248,27 +196,6 @@ window.addEventListener("pageshow", e => {
         loadNavbar();
     }
 });
-
-
-// Select all elements with a background image
-// const parallaxSections = Array.from(document.querySelectorAll('section, footer'));
-
-// parallaxSections.forEach(section => {
-//     const bg = window.getComputedStyle(section).backgroundImage;
-//     if (bg && bg !== 'none') {
-//         section.classList.add('parallax');
-//     }
-// });
-
-// window.addEventListener('scroll', function () {
-//     parallaxSections.forEach(section => {
-//         const bg = window.getComputedStyle(section).backgroundImage;
-//         if (bg && bg !== 'none') {
-//             const offset = window.pageYOffset - section.offsetTop;
-//             section.style.backgroundPositionY = offset * 0.5 + "px"; // Adjust 0.5 for speed
-//         }
-//     });
-// });
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -409,7 +336,10 @@ const MENU_PDF_URL = 'assets/Premier_Palate_Menu.pdf';
 let menuAction = 'view';
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwcak3NeLVDaFfuQG7mhJuNP17bFHCGq4_eOKQi6_yf056vrTzKJQGrefUqIkB3agAslg/exec';
 
-function openMenuGate(action = 'view') {
+function openMenuGate(event, action = 'view') {
+    event.preventDefault();
+    event.stopPropagation();
+
     menuAction = action;
     document.getElementById('menuGatePopup').classList.add('active');
 }
@@ -436,7 +366,7 @@ function submitMenuLead() {
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            type: 'Menu View',
+            type: menuAction === 'download' ? 'Menu Download' : 'Menu View',
             name,
             phone,
             city,
@@ -445,9 +375,9 @@ function submitMenuLead() {
     });
 
     closeMenuGate();
-    window.open(MENU_PDF_URL, '_blank');
 
     if (menuAction === 'download') {
+        // 🔽 Download only
         fetch(MENU_PDF_URL)
             .then(res => res.blob())
             .then(blob => {
@@ -461,6 +391,7 @@ function submitMenuLead() {
                 window.URL.revokeObjectURL(url);
             });
     } else {
+        // 👀 View only
         window.open(MENU_PDF_URL, '_blank');
     }
 }
