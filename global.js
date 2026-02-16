@@ -62,7 +62,7 @@ function submitForm(e) {
         eventDate: document.getElementById('eventDate').value
     };
 
-    fetch('https://script.google.com/macros/s/AKfycbwcak3NeLVDaFfuQG7mhJuNP17bFHCGq4_eOKQi6_yf056vrTzKJQGrefUqIkB3agAslg/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbzgmt3zY5lwDRgD0kxtT-xhdByEbbPMPSbW5hBM5eRoKR0TFNAQqPSdFsFf24GTfOKcYw/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -289,30 +289,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
-function sendWhatsApp(e) {
+function submitContactForm(e) {
     e.preventDefault();
 
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const message = document.getElementById("message").value;
+    const data = {
+        type: 'Contact Form', // 👈 identifier
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        message: document.getElementById('message').value
+    };
 
-    const whatsappMessage =
-        `📩 *New Contact Form Message*
-
-👤 *Name:* ${name}
-📧 *Email:* ${email}
-📞 *Phone:* ${phone}
-💬 *Message:* ${message}`;
-
-    const encodedMessage = encodeURIComponent(whatsappMessage);
-
-    const whatsappNumber = "919319304595";
-
-    window.open(
-        `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
-        "_blank"
-    );
+    fetch('https://script.google.com/macros/s/AKfycbzgmt3zY5lwDRgD0kxtT-xhdByEbbPMPSbW5hBM5eRoKR0TFNAQqPSdFsFf24GTfOKcYw/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(() => {
+            alert('✅ Message sent successfully!');
+            document.getElementById('contactForm').reset();
+        })
+        .catch(() => {
+            alert('❌ Submission failed.');
+        });
 }
 
 
@@ -334,18 +336,37 @@ document.addEventListener('DOMContentLoaded', () => {
 ================================ */
 const MENU_PDF_URL = 'assets/Premier_Palate_Menu.pdf';
 let menuAction = 'view';
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwcak3NeLVDaFfuQG7mhJuNP17bFHCGq4_eOKQi6_yf056vrTzKJQGrefUqIkB3agAslg/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzgmt3zY5lwDRgD0kxtT-xhdByEbbPMPSbW5hBM5eRoKR0TFNAQqPSdFsFf24GTfOKcYw/exec';
 
-function openMenuGate(event, action = 'view') {
-    event.preventDefault();
-    event.stopPropagation();
-
+function openMenuGate(e, action) {
+    e.preventDefault();
     menuAction = action;
-    document.getElementById('menuGatePopup').classList.add('active');
+
+    const popup = document.getElementById('menuGatePopup');
+    const heading = popup.querySelector('.popup-header h2');
+    const button = popup.querySelector('.submit-btn');
+
+    if (action === 'download') {
+        heading.textContent = 'Download Our Menu';
+        heading.classList.add('long-title');
+        button.textContent = 'Download Menu';
+    } else {
+        heading.textContent = 'View Our Menu';
+        heading.classList.remove('long-title');
+        button.textContent = 'View Menu';
+    }
+
+    popup.style.display = 'flex';
 }
 
 function closeMenuGate() {
-    document.getElementById('menuGatePopup').classList.remove('active');
+    document.getElementById('menuGatePopup').style.display = 'none';
+
+    // Optional: clear error + inputs for next open
+    document.getElementById('menuLeadError').textContent = '';
+    document.getElementById('menuLeadName').value = '';
+    document.getElementById('menuLeadPhone').value = '';
+    document.getElementById('menuLeadCity').value = '';
 }
 
 function submitMenuLead() {

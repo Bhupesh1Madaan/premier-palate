@@ -1203,6 +1203,10 @@ footer {
     font-family: var(--font-primary);
 }
 
+.popup-header h2.long-title {
+    font-size: 2.1rem;
+}
+
 .popup-header p {
     color: rgba(253, 204, 94, 0.85);
     font-size: 1rem;
