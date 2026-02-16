@@ -461,6 +461,7 @@ nav.scrolled {
     color: var(--accent-gold);
     font-weight: 500;
     margin-bottom: var(--spacing-sm);
+    color: #3d1b6f;
     text-transform: uppercase;
 }
 
@@ -1800,6 +1801,7 @@ iframe {
     .section-subtitle {
         margin-top: 10px;
         font-size: 0.8rem;
+        color: #3d1b6f;
         letter-spacing: 2px;
     }
 
